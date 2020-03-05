@@ -1,4 +1,5 @@
 # This is a sample diarization project that incorporates some custom modeling as well as some feaures cognitive services features on Azure
+## This project also uses PyAudio Analysis: A Python library for audio feature extraction, classification, segmentation and applications.
 
 MIT License
 
