@@ -1,0 +1,554 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<title>ValueError: zero-size array to reduction operation maximum which has no identity // Werkzeug Debugger</title>
+	<link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css" type="text/css">
+	<!-- We need to make sure this has a favicon so that the debugger does
+         not by accident trigger a request to /favicon.ico which might
+         change the application state. -->
+	<link rel="shortcut icon" href="?__debugger__=yes&amp;cmd=resource&amp;f=console.png">
+	<script src="?__debugger__=yes&amp;cmd=resource&amp;f=jquery.js"></script>
+	<script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
+	<script type="text/javascript">
+		var TRACEBACK = 139785052581168,
+          CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "3jBmIEJKdSi31EbAztd9";
+	</script>
+</head>
+
+<body style="background-color: #fff">
+	<div class="debugger">
+		<h1>ValueError</h1>
+		<div class="detail">
+			<p class="errormsg">ValueError: zero-size array to reduction operation maximum which has no identity</p>
+		</div>
+		<h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+		<div class="traceback">
+
+			<ul>
+				<li>
+					<div class="frame" id="frame-139785052581448">
+						<h4>File <cite class="filename">"/usr/local/lib/python3.6/site-packages/flask/app.py"</cite>,
+							line <em class="line">2463</em>,
+							in <code class="function">__call__</code></h4>
+						<div class="source library">
+							<pre class="line before"><span class="ws"></span> </pre>
+							<pre
+								class="line before"><span class="ws">    </span>def __call__(self, environ, start_response):</pre>
+							<pre
+								class="line before"><span class="ws">        </span>&quot;&quot;&quot;The WSGI server calls the Flask application object as the</pre>
+							<pre
+								class="line before"><span class="ws">        </span>WSGI application. This calls :meth:`wsgi_app` which can be</pre>
+							<pre
+								class="line before"><span class="ws">        </span>wrapped to applying middleware.&quot;&quot;&quot;</pre>
+							<pre
+								class="line current"><span class="ws">        </span>return self.wsgi_app(environ, start_response)</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre class="line after"><span class="ws">    </span>def __repr__(self):</pre>
+							<pre
+								class="line after"><span class="ws">        </span>return &quot;&lt;%s %r&gt;&quot; % (self.__class__.__name__, self.name)</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785052581728">
+						<h4>File <cite class="filename">"/usr/local/lib/python3.6/site-packages/flask/app.py"</cite>,
+							line <em class="line">2449</em>,
+							in <code class="function">wsgi_app</code></h4>
+						<div class="source library">
+							<pre class="line before"><span class="ws">            </span>try:</pre>
+							<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+							<pre
+								class="line before"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+							<pre class="line before"><span class="ws">            </span>except Exception as e:</pre>
+							<pre class="line before"><span class="ws">                </span>error = e</pre>
+							<pre
+								class="line current"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+							<pre class="line after"><span class="ws">            </span>except:  # noqa: B001</pre>
+							<pre
+								class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre>
+							<pre class="line after"><span class="ws">                </span>raise</pre>
+							<pre
+								class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+							<pre class="line after"><span class="ws">        </span>finally:</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785052581784">
+						<h4>File <cite class="filename">"/usr/local/lib/python3.6/site-packages/flask/app.py"</cite>,
+							line <em class="line">1866</em>,
+							in <code class="function">handle_exception</code></h4>
+						<div class="source library">
+							<pre
+								class="line before"><span class="ws">            </span># if we want to repropagate the exception, we can attempt to</pre>
+							<pre
+								class="line before"><span class="ws">            </span># raise it with the whole traceback in case we can do that</pre>
+							<pre
+								class="line before"><span class="ws">            </span># (the function was actually called from the except part)</pre>
+							<pre
+								class="line before"><span class="ws">            </span># otherwise, we just raise the error again</pre>
+							<pre class="line before"><span class="ws">            </span>if exc_value is e:</pre>
+							<pre
+								class="line current"><span class="ws">                </span>reraise(exc_type, exc_value, tb)</pre>
+							<pre class="line after"><span class="ws">            </span>else:</pre>
+							<pre class="line after"><span class="ws">                </span>raise e</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre
+								class="line after"><span class="ws">        </span>self.log_exception((exc_type, exc_value, tb))</pre>
+							<pre
+								class="line after"><span class="ws">        </span>server_error = InternalServerError()</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785052581840">
+						<h4>File
+							<cite class="filename">"/usr/local/lib/python3.6/site-packages/flask/_compat.py"</cite>,
+							line <em class="line">39</em>,
+							in <code class="function">reraise</code></h4>
+						<div class="source library">
+							<pre
+								class="line before"><span class="ws">    </span>import collections.abc as collections_abc</pre>
+							<pre class="line before"><span class="ws"></span> </pre>
+							<pre class="line before"><span class="ws">    </span>def reraise(tp, value, tb=None):</pre>
+							<pre
+								class="line before"><span class="ws">        </span>if value.__traceback__ is not tb:</pre>
+							<pre
+								class="line before"><span class="ws">            </span>raise value.with_traceback(tb)</pre>
+							<pre class="line current"><span class="ws">        </span>raise value</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre class="line after"><span class="ws">    </span>implements_to_string = _identity</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre class="line after"><span class="ws"></span>else:</pre>
+							<pre class="line after"><span class="ws">    </span>iterkeys = lambda d: d.iterkeys()</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785052581672">
+						<h4>File <cite class="filename">"/usr/local/lib/python3.6/site-packages/flask/app.py"</cite>,
+							line <em class="line">2446</em>,
+							in <code class="function">wsgi_app</code></h4>
+						<div class="source library">
+							<pre
+								class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
+							<pre class="line before"><span class="ws">        </span>error = None</pre>
+							<pre class="line before"><span class="ws">        </span>try:</pre>
+							<pre class="line before"><span class="ws">            </span>try:</pre>
+							<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+							<pre
+								class="line current"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+							<pre class="line after"><span class="ws">            </span>except Exception as e:</pre>
+							<pre class="line after"><span class="ws">                </span>error = e</pre>
+							<pre
+								class="line after"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+							<pre class="line after"><span class="ws">            </span>except:  # noqa: B001</pre>
+							<pre
+								class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785052581616">
+						<h4>File <cite class="filename">"/usr/local/lib/python3.6/site-packages/flask/app.py"</cite>,
+							line <em class="line">1951</em>,
+							in <code class="function">full_dispatch_request</code></h4>
+						<div class="source library">
+							<pre
+								class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+							<pre
+								class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+							<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+							<pre
+								class="line before"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+							<pre class="line before"><span class="ws">        </span>except Exception as e:</pre>
+							<pre
+								class="line current"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+							<pre
+								class="line after"><span class="ws">        </span>return self.finalize_request(rv)</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre
+								class="line after"><span class="ws">    </span>def finalize_request(self, rv, from_error_handler=False):</pre>
+							<pre
+								class="line after"><span class="ws">        </span>&quot;&quot;&quot;Given the return value from a view function this finalizes</pre>
+							<pre
+								class="line after"><span class="ws">        </span>the request by converting it into a response and invoking the</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785052581504">
+						<h4>File <cite class="filename">"/usr/local/lib/python3.6/site-packages/flask/app.py"</cite>,
+							line <em class="line">1820</em>,
+							in <code class="function">handle_user_exception</code></h4>
+						<div class="source library">
+							<pre
+								class="line before"><span class="ws">            </span>return self.handle_http_exception(e)</pre>
+							<pre class="line before"><span class="ws"></span> </pre>
+							<pre
+								class="line before"><span class="ws">        </span>handler = self._find_error_handler(e)</pre>
+							<pre class="line before"><span class="ws"></span> </pre>
+							<pre class="line before"><span class="ws">        </span>if handler is None:</pre>
+							<pre
+								class="line current"><span class="ws">            </span>reraise(exc_type, exc_value, tb)</pre>
+							<pre class="line after"><span class="ws">        </span>return handler(e)</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre class="line after"><span class="ws">    </span>def handle_exception(self, e):</pre>
+							<pre
+								class="line after"><span class="ws">        </span>&quot;&quot;&quot;Handle an exception that did not have an error handler</pre>
+							<pre
+								class="line after"><span class="ws">        </span>associated with it, or that was raised from an error handler.</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785052581560">
+						<h4>File
+							<cite class="filename">"/usr/local/lib/python3.6/site-packages/flask/_compat.py"</cite>,
+							line <em class="line">39</em>,
+							in <code class="function">reraise</code></h4>
+						<div class="source library">
+							<pre
+								class="line before"><span class="ws">    </span>import collections.abc as collections_abc</pre>
+							<pre class="line before"><span class="ws"></span> </pre>
+							<pre class="line before"><span class="ws">    </span>def reraise(tp, value, tb=None):</pre>
+							<pre
+								class="line before"><span class="ws">        </span>if value.__traceback__ is not tb:</pre>
+							<pre
+								class="line before"><span class="ws">            </span>raise value.with_traceback(tb)</pre>
+							<pre class="line current"><span class="ws">        </span>raise value</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre class="line after"><span class="ws">    </span>implements_to_string = _identity</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre class="line after"><span class="ws"></span>else:</pre>
+							<pre class="line after"><span class="ws">    </span>iterkeys = lambda d: d.iterkeys()</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785041772728">
+						<h4>File <cite class="filename">"/usr/local/lib/python3.6/site-packages/flask/app.py"</cite>,
+							line <em class="line">1949</em>,
+							in <code class="function">full_dispatch_request</code></h4>
+						<div class="source library">
+							<pre
+								class="line before"><span class="ws">        </span>self.try_trigger_before_first_request_functions()</pre>
+							<pre class="line before"><span class="ws">        </span>try:</pre>
+							<pre
+								class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+							<pre
+								class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+							<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+							<pre
+								class="line current"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+							<pre class="line after"><span class="ws">        </span>except Exception as e:</pre>
+							<pre
+								class="line after"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+							<pre
+								class="line after"><span class="ws">        </span>return self.finalize_request(rv)</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre
+								class="line after"><span class="ws">    </span>def finalize_request(self, rv, from_error_handler=False):</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785041772896">
+						<h4>File <cite class="filename">"/usr/local/lib/python3.6/site-packages/flask/app.py"</cite>,
+							line <em class="line">1935</em>,
+							in <code class="function">dispatch_request</code></h4>
+						<div class="source library">
+							<pre
+								class="line before"><span class="ws">            </span>getattr(rule, &quot;provide_automatic_options&quot;, False)</pre>
+							<pre
+								class="line before"><span class="ws">            </span>and req.method == &quot;OPTIONS&quot;</pre>
+							<pre class="line before"><span class="ws">        </span>):</pre>
+							<pre
+								class="line before"><span class="ws">            </span>return self.make_default_options_response()</pre>
+							<pre
+								class="line before"><span class="ws">        </span># otherwise dispatch to the handler for that endpoint</pre>
+							<pre
+								class="line current"><span class="ws">        </span>return self.view_functions[rule.endpoint](**req.view_args)</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre class="line after"><span class="ws">    </span>def full_dispatch_request(self):</pre>
+							<pre
+								class="line after"><span class="ws">        </span>&quot;&quot;&quot;Dispatches the request and on top of that performs request</pre>
+							<pre
+								class="line after"><span class="ws">        </span>pre and postprocessing as well as HTTP exception catching and</pre>
+							<pre class="line after"><span class="ws">        </span>error handling.</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785041772952">
+						<h4>File <cite class="filename">"/opt/app/app.py"</cite>,
+							line <em class="line">41</em>,
+							in <code class="function">transcription</code></h4>
+						<div class="source ">
+							<pre class="line before"><span class="ws"></span># def transcription():</pre>
+							<pre class="line before"><span class="ws"></span>def transcription():</pre>
+							<pre class="line before"><span class="ws">    </span>total_input = request.json</pre>
+							<pre
+								class="line before"><span class="ws">    </span>input_file = total_input.get('file_name')</pre>
+							<pre
+								class="line before"><span class="ws">    </span>input_folder = total_input.get('file_location')</pre>
+							<pre
+								class="line current"><span class="ws">    </span>run_function = output_function(input_file, input_folder)</pre>
+							<pre class="line after"><span class="ws">    </span>return 'transcription complete'</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre
+								class="line after"><span class="ws"></span>@app.route('/transcribe2', methods = ['POST'])</pre>
+							<pre class="line after"><span class="ws"></span>def transcription2():</pre>
+							<pre class="line after"><span class="ws">    </span>while not True:</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785041772616">
+						<h4>File <cite class="filename">"/opt/app/test_GreenwayDiarization_original.py"</cite>,
+							line <em class="line">74</em>,
+							in <code class="function">output_function</code></h4>
+						<div class="source ">
+							<pre
+								class="line before"><span class="ws"></span>#     output_folder=pjoin(output_folder_name) )</pre>
+							<pre class="line before"><span class="ws"></span> </pre>
+							<pre class="line before"><span class="ws"></span> </pre>
+							<pre
+								class="line before"><span class="ws"></span>def output_function(input_file, input_folder):</pre>
+							<pre
+								class="line before"><span class="ws">    </span>_, output_json = fileGreenwaySpeakerDiarization(</pre>
+							<pre
+								class="line current"><span class="ws">        </span>filename=pjoin(input_file), output_folder=pjoin(input_folder))</pre>
+							<pre class="line after"><span class="ws">    </span>return output_json</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre class="line after"><span class="ws"></span># def transcription():</pre>
+							<pre
+								class="line after"><span class="ws"></span>#     total_input = '/Users/macmini/Dropbox/docker/anthonyDiarization/audio_output/audio_test_min_1.wav,/Users/macmini/Dropbox/docker/anthonyDiarization/audio_output/'</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785041772784">
+						<h4>File <cite class="filename">"/opt/app/GreenwayHealth.py"</cite>,
+							line <em class="line">130</em>,
+							in <code class="function">fileGreenwaySpeakerDiarization</code></h4>
+						<div class="source ">
+							<pre
+								class="line before"><span class="ws">        </span>os.path.join(os.path.dirname(os.path.realpath(__file__)), &quot;pyAudioAnalysis/data/models&quot;, &quot;knn_speaker_male_female&quot;))</pre>
+							<pre class="line before"><span class="ws"></span> </pre>
+							<pre
+								class="line before"><span class="ws">    </span>[mt_feats, st_feats, _] = aF.mid_feature_extraction(x, fs, mt_size * fs,</pre>
+							<pre
+								class="line before"><span class="ws">                                                        </span>mt_step * fs,</pre>
+							<pre
+								class="line before"><span class="ws">                                                        </span>round(fs * st_win),</pre>
+							<pre
+								class="line current"><span class="ws">                                                        </span>round(fs*st_win * 0.5))</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre
+								class="line after"><span class="ws">    </span>MidTermFeatures2 = np.zeros((mt_feats.shape[0] + len(classNames1) +</pre>
+							<pre
+								class="line after"><span class="ws">                                 </span>len(classNames2), mt_feats.shape[1]))</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre class="line after"><span class="ws">    </span>for i in range(mt_feats.shape[1]):</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785041773064">
+						<h4>File <cite class="filename">"/opt/app/pyAudioAnalysis/MidTermFeatures.py"</cite>,
+							line <em class="line">92</em>,
+							in <code class="function">mid_feature_extraction</code></h4>
+						<div class="source ">
+							<pre class="line before"><span class="ws">    </span>Mid-term feature extraction</pre>
+							<pre class="line before"><span class="ws">    </span>&quot;&quot;&quot;</pre>
+							<pre class="line before"><span class="ws"></span> </pre>
+							<pre
+								class="line before"><span class="ws">    </span>short_features, short_feature_names = \</pre>
+							<pre
+								class="line before"><span class="ws">        </span>ShortTermFeatures.feature_extraction(signal, sampling_rate,</pre>
+							<pre
+								class="line current"><span class="ws">                                             </span>short_window, short_step)</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre class="line after"><span class="ws">    </span>n_stats = 2</pre>
+							<pre class="line after"><span class="ws">    </span>n_feats = len(short_features)</pre>
+							<pre
+								class="line after"><span class="ws">    </span>mid_window_ratio = int(round(mid_window / short_step))</pre>
+							<pre
+								class="line after"><span class="ws">    </span>mt_step_ratio = int(round(mid_step / short_step))</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785041773008">
+						<h4>File <cite class="filename">"/opt/app/pyAudioAnalysis/ShortTermFeatures.py"</cite>,
+							line <em class="line">563</em>,
+							in <code class="function">feature_extraction</code></h4>
+						<div class="source ">
+							<pre class="line before"><span class="ws"></span> </pre>
+							<pre class="line before"><span class="ws">    </span># signal normalization</pre>
+							<pre class="line before"><span class="ws">    </span>signal = np.double(signal)</pre>
+							<pre class="line before"><span class="ws">    </span>signal = signal / (2.0 ** 15)</pre>
+							<pre class="line before"><span class="ws">    </span>dc_offset = signal.mean()</pre>
+							<pre
+								class="line current"><span class="ws">    </span>signal_max = (np.abs(signal)).max()</pre>
+							<pre
+								class="line after"><span class="ws">    </span>signal = (signal - dc_offset) / (signal_max + 0.0000000001)</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre
+								class="line after"><span class="ws">    </span>number_of_samples = len(signal)  # total number of samples</pre>
+							<pre class="line after"><span class="ws">    </span>current_position = 0</pre>
+							<pre class="line after"><span class="ws">    </span>count_fr = 0</pre>
+						</div>
+					</div>
+
+				<li>
+					<div class="frame" id="frame-139785041772672">
+						<h4>File
+							<cite class="filename">"/usr/local/lib/python3.6/site-packages/numpy/core/_methods.py"</cite>,
+							line <em class="line">30</em>,
+							in <code class="function">_amax</code></h4>
+						<div class="source library">
+							<pre class="line before"><span class="ws"></span> </pre>
+							<pre
+								class="line before"><span class="ws"></span># avoid keyword arguments to speed up parsing, saves about 15%-20% for very</pre>
+							<pre class="line before"><span class="ws"></span># small reductions</pre>
+							<pre
+								class="line before"><span class="ws"></span>def _amax(a, axis=None, out=None, keepdims=False,</pre>
+							<pre
+								class="line before"><span class="ws">          </span>initial=_NoValue, where=True):</pre>
+							<pre
+								class="line current"><span class="ws">    </span>return umr_maximum(a, axis, None, out, keepdims, initial, where)</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+							<pre
+								class="line after"><span class="ws"></span>def _amin(a, axis=None, out=None, keepdims=False,</pre>
+							<pre
+								class="line after"><span class="ws">          </span>initial=_NoValue, where=True):</pre>
+							<pre
+								class="line after"><span class="ws">    </span>return umr_minimum(a, axis, None, out, keepdims, initial, where)</pre>
+							<pre class="line after"><span class="ws"></span> </pre>
+						</div>
+					</div>
+			</ul>
+			<blockquote>ValueError: zero-size array to reduction operation maximum which has no identity</blockquote>
+		</div>
+
+		<div class="plain">
+			<form action="/?__debugger__=yes&amp;cmd=paste" method="post">
+				<p>
+					<input type="hidden" name="language" value="pytb">
+      This is the Copy/Paste friendly version of the traceback. <span
+      class="pastemessage">You can also paste this traceback into
+      a <a href="https://gist.github.com/">gist</a>:
+      <input type="submit" value="create paste"></span>
+				</p>
+				<textarea cols="50" rows="10" name="code" readonly>Traceback (most recent call last):
+  File &quot;/usr/local/lib/python3.6/site-packages/flask/app.py&quot;, line 2463, in __call__
+    return self.wsgi_app(environ, start_response)
+  File &quot;/usr/local/lib/python3.6/site-packages/flask/app.py&quot;, line 2449, in wsgi_app
+    response = self.handle_exception(e)
+  File &quot;/usr/local/lib/python3.6/site-packages/flask/app.py&quot;, line 1866, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File &quot;/usr/local/lib/python3.6/site-packages/flask/_compat.py&quot;, line 39, in reraise
+    raise value
+  File &quot;/usr/local/lib/python3.6/site-packages/flask/app.py&quot;, line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File &quot;/usr/local/lib/python3.6/site-packages/flask/app.py&quot;, line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File &quot;/usr/local/lib/python3.6/site-packages/flask/app.py&quot;, line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File &quot;/usr/local/lib/python3.6/site-packages/flask/_compat.py&quot;, line 39, in reraise
+    raise value
+  File &quot;/usr/local/lib/python3.6/site-packages/flask/app.py&quot;, line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File &quot;/usr/local/lib/python3.6/site-packages/flask/app.py&quot;, line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File &quot;/opt/app/app.py&quot;, line 41, in transcription
+    run_function = output_function(input_file, input_folder)
+  File &quot;/opt/app/test_GreenwayDiarization_original.py&quot;, line 74, in output_function
+    filename=pjoin(input_file), output_folder=pjoin(input_folder))
+  File &quot;/opt/app/GreenwayHealth.py&quot;, line 130, in fileGreenwaySpeakerDiarization
+    round(fs*st_win * 0.5))
+  File &quot;/opt/app/pyAudioAnalysis/MidTermFeatures.py&quot;, line 92, in mid_feature_extraction
+    short_window, short_step)
+  File &quot;/opt/app/pyAudioAnalysis/ShortTermFeatures.py&quot;, line 563, in feature_extraction
+    signal_max = (np.abs(signal)).max()
+  File &quot;/usr/local/lib/python3.6/site-packages/numpy/core/_methods.py&quot;, line 30, in _amax
+    return umr_maximum(a, axis, None, out, keepdims, initial, where)
+ValueError: zero-size array to reduction operation maximum which has no identity</textarea>
+			</form>
+		</div>
+		<div class="explanation">
+			The debugger caught an exception in your WSGI application. You can now
+			look at the traceback which led to the error. <span class="nojavascript">
+  If you enable JavaScript you can also use additional features such as code
+  execution (if the evalex feature is enabled), automatic pasting of the
+  exceptions and much more.</span>
+		</div>
+		<div class="footer">
+			Brought to you by <strong class="arthur">DON'T PANIC</strong>, your
+			friendly Werkzeug powered traceback interpreter.
+		</div>
+	</div>
+
+	<div class="pin-prompt">
+		<div class="inner">
+			<h3>Console Locked</h3>
+			<p>
+				The console is locked and needs to be unlocked by entering the PIN.
+				You can find the PIN printed out on the standard output of your
+				shell that runs the server.
+				<form>
+					<p>PIN:
+						<input type=text name=pin size=14>
+						<input type=submit name=btn value="Confirm Pin">
+        </form>
+		</div>
+	</div>
+</body>
+
+</html>
+
+<!--
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 2463, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 2449, in wsgi_app
+    response = self.handle_exception(e)
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1866, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/opt/app/app.py", line 41, in transcription
+    run_function = output_function(input_file, input_folder)
+  File "/opt/app/test_GreenwayDiarization_original.py", line 74, in output_function
+    filename=pjoin(input_file), output_folder=pjoin(input_folder))
+  File "/opt/app/GreenwayHealth.py", line 130, in fileGreenwaySpeakerDiarization
+    round(fs*st_win * 0.5))
+  File "/opt/app/pyAudioAnalysis/MidTermFeatures.py", line 92, in mid_feature_extraction
+    short_window, short_step)
+  File "/opt/app/pyAudioAnalysis/ShortTermFeatures.py", line 563, in feature_extraction
+    signal_max = (np.abs(signal)).max()
+  File "/usr/local/lib/python3.6/site-packages/numpy/core/_methods.py", line 30, in _amax
+    return umr_maximum(a, axis, None, out, keepdims, initial, where)
+ValueError: zero-size array to reduction operation maximum which has no identity
+
+-->
